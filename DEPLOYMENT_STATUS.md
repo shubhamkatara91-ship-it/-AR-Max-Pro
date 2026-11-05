@@ -11,7 +11,7 @@ Checked: 2026-11-05 (latest Render verification)
 ## GitHub source upload
 - Target repository: `shubhamkatara91-ship-it/-AR-Max-Pro`.
 - Repository write access is available through the GitHub integration.
-- The repository currently contains only `README.md`; the application source tree is not committed.
+- The repository currently contains `README.md` and `DEPLOYMENT_STATUS.md`; the application source tree is not committed.
 - The local container cannot resolve `github.com` (DNS lookup failure), so a direct `git push` cannot be completed from this environment.
 - Do not treat the README commit as an application source upload.
 
@@ -22,7 +22,7 @@ Checked: 2026-11-05 (latest Render verification)
 - Render reports the Free database expiry date as 2026-12-05. It is temporary and must be migrated or upgraded before expiry to avoid service interruption/data loss.
 - The unrelated OPUS PRO service was not changed.
 - No paid Render resources have been created. The database is Free-tier and temporary; no paid upgrade will be made without explicit approval.
-- A Render deploy cannot succeed until the complete source tree is in the dedicated GitHub repository.
+- The database is now available. A Render API deploy cannot succeed until the complete source tree is in the dedicated GitHub repository.
 
 ## Android APK
 - Node.js 22 and Java are present in this environment.
