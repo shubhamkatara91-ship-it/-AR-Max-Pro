@@ -44,3 +44,12 @@ Checked: 2026-11-05 (latest Render verification)
 - The dedicated Free PostgreSQL 17 instance is now `available`; the API service has not been created.
 - Before deployment, the Blueprint must be changed to use only a Free web service and the existing Free database, and the paid cron/backup service must be excluded. A reliable remote backup plan is still required; Render Free Postgres is temporary and expires 2026-12-05.
 - The Dockerfile and Capacitor config have been inspected. The Android shell expects a generated `mobile-web` directory, so the mobile preparation/build workflow must be verified after source upload.
+
+
+## Free-tier configuration pass — 2026-11-05
+
+- Confirmed the dedicated `ar-max-pro-db` PostgreSQL 17 instance is now `available` and not suspended.
+- Reworked the local source copy's `render.yaml` into a free-only API service blueprint that references the separately created database through a dashboard-supplied `DATABASE_URL`. It defines no paid plan, no additional database, and no paid Cron service.
+- Updated the local static regression test to enforce the free-only blueprint.
+- Re-ran backend checks locally: all JavaScript syntax checks passed and **19 static tests passed, 0 failed**.
+- These source/configuration changes are local only; the complete source tree and updated blueprint are not yet committed to GitHub. The API service and APK remain undeployed/unbuilt.
