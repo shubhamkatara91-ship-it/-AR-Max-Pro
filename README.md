@@ -11,7 +11,7 @@ This repository is the dedicated home for AR Max Pro. The reviewed v1.12 source 
 ## Release gates
 
 1. Upload the complete v1.12 source tree, preserving `backend/`, `frontend/`, `scripts/`, `assets/`, `.github/workflows/`, `Dockerfile`, and `render.yaml` at repository root.
-2. Review Render costs and approve recurring charges before provisioning the dedicated PostgreSQL database, API service, and scheduled backup job. No paid cloud resources are authorized by this repository setup alone.
+2. Use the already-created Free PostgreSQL database and a Free web service only. Do not apply the current local render.yaml as-is: it still defines paid Starter/Basic resources and a paid cron job. No paid resources are authorized.
 3. Configure `AR_MAX_PRO_API` as a GitHub Actions secret only after the API is deployed and its HTTPS `/api/health` endpoint is healthy.
 4. Run the Android debug workflow to produce a test APK. A signed release additionally requires Android keystore secrets in GitHub Actions.
 
@@ -26,3 +26,7 @@ Never commit `.env` files containing real secrets, database URLs, private keys, 
 - Full source tree upload pending.
 - Dedicated API/PostgreSQL deployment pending; no production API URL exists yet.
 - Android APK build pending; this build environment has no configured Android SDK/Gradle toolchain.
+
+
+## Free-tier warning
+The current local Render Blueprint has paid resource definitions and must be revised before use. The dedicated Free PostgreSQL database expires on 2026-12-05; plan a verified migration/backup before that date. No paid resource should be created without explicit approval.
