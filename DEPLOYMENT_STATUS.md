@@ -1,6 +1,6 @@
 # AR Max Pro v1.12 — deployment status
 
-Checked: 2026-11-05
+Checked: 2026-11-05 (latest Render verification)
 
 ## Completed locally
 - Ran `npm run check` from `backend/` using Node.js 22.
@@ -18,7 +18,7 @@ Checked: 2026-11-05
 ## Render backend
 - The selected Render workspace was inspected.
 - It contains an unrelated `opus-pro-api` service connected to the OPUS-PRO repository.
-- Created a dedicated Render PostgreSQL 17 database named `ar-max-pro-db` on the Free plan in Singapore on 2026-11-05. Render reports status `creating` at the latest check; it has not yet reached ready/available status.
+- Created a dedicated Render PostgreSQL 17 database named `ar-max-pro-db` on the Free plan in Singapore on 2026-11-05. Latest Render verification reports the database status `available` and `not_suspended`.
 - Render reports the Free database expiry date as 2026-12-05. It is temporary and must be migrated or upgraded before expiry to avoid service interruption/data loss.
 - The unrelated OPUS PRO service was not changed.
 - No paid Render resources have been created. The database is Free-tier and temporary; no paid upgrade will be made without explicit approval.
