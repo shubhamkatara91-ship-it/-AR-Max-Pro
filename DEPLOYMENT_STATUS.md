@@ -53,3 +53,10 @@ Checked: 2026-11-05 (latest Render verification)
 - Updated the local static regression test to enforce the free-only blueprint.
 - Re-ran backend checks locally: all JavaScript syntax checks passed and **19 static tests passed, 0 failed**.
 - These source/configuration changes are local only; the complete source tree and updated blueprint are not yet committed to GitHub. The API service and APK remain undeployed/unbuilt.
+
+
+## Latest local dashboard work — 2026-11-05
+- Updated the local v1.12 source navigation to the requested order: Profit, Home, Tools; Home is the initial selected section.
+- Removed the Profile nav item and login-screen Support control/dialog; Tools now shows ARG V1 as its sole tool entry.
+- Added a regression test for the navigation order and removed controls. Local validation now passes 20/20 static tests and all JavaScript syntax checks.
+- The updated source archive is prepared locally. These dashboard changes are not yet in the GitHub repository because the full source upload is still blocked by the current environment's GitHub DNS/network failure.
