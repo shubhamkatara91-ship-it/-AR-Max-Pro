@@ -4,9 +4,9 @@ This repository is the dedicated home for AR Max Pro. The reviewed v1.12 source 
 
 ## QA completed on the local v1.12 source
 
-- Node.js syntax checks passed for backend, frontend, scripts, and tests.
-- Static test suite: **19/19 passed** (`node --test backend/tests/static.test.js`).
-- These checks do not replace API runtime tests, PostgreSQL integration tests, production health checks, or physical Android device QA.
+- Node.js syntax checks passed for **14 JavaScript files** across backend, frontend, and scripts.
+- Static test suite: **21/21 passed** (`node --test backend/tests/static.test.js`).
+- These are static/source checks only. API runtime tests, PostgreSQL integration tests, production health checks, and physical Android device QA remain outstanding.
 
 ## Release gates
 
@@ -21,8 +21,8 @@ Never commit `.env` files containing real secrets, database URLs, private keys, 
 
 ## Current status
 
-- Dedicated repository verified; README and handoff committed.
-- Local source static QA completed: 19/19 tests passed.
+- Dedicated repository verified; handoff README committed.
+- Local source QA rerun: 14/14 JavaScript syntax checks and 21/21 static tests passed.
 - Full source tree upload pending.
 - API deployment pending; no production API URL exists yet.
-- Android APK build pending; no installable APK has been produced yet.
+- Android APK build pending; Android SDK/Gradle are not configured in the current build environment.
