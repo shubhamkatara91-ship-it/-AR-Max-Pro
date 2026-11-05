@@ -56,7 +56,7 @@ Checked: 2026-11-05 (latest Render verification)
 
 
 ## Latest local dashboard work — 2026-11-05
-- Updated the local v1.12 source navigation to the requested order: Profit, Home, Tools; Home is the initial selected section.
-- Removed the Profile nav item and login-screen Support control/dialog; Tools now shows ARG V1 as its sole tool entry.
-- Added a regression test for the navigation order and removed controls. Local validation now passes 20/20 static tests and all JavaScript syntax checks.
-- The updated source archive is prepared locally. These dashboard changes are not yet in the GitHub repository because the full source upload is still blocked by the current environment's GitHub DNS/network failure.
+- Updated the local v1.12 navigation to Profit, Home, Tools; Home is the initial selected section. The login Support control and Profile nav item are removed, consistent with the previously recorded dashboard cleanup.
+- **Correction:** ARG V1 is not placed inside Tools in the current local source. That placement was added by mistake and has been reverted; no new ARG V1 placement is assumed.
+- Added a regression test for navigation and removed controls. Local validation passes 20/20 static tests and all JavaScript syntax checks.
+- The corrected source archive is prepared locally. These changes are not yet in GitHub because the full source upload is still blocked by the current environment's GitHub DNS/network failure.
