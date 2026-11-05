@@ -1,13 +1,19 @@
 # AR Max Pro — deployment handoff
 
-This repository is the dedicated home for AR Max Pro. The complete v1.12 source tree still needs to be uploaded before a server deployment or Android build can run.
+This repository is the dedicated home for AR Max Pro. The reviewed v1.12 source archive is available locally, but the complete source tree has not yet been committed to this repository.
+
+## QA completed on the local v1.12 source
+
+- Node.js syntax checks passed for backend, frontend, scripts, and tests.
+- Static test suite: **19/19 passed** (`node --test backend/tests/static.test.js`).
+- These checks do not replace API runtime tests, PostgreSQL integration tests, production health checks, or physical Android device QA.
 
 ## Release gates
 
 1. Upload the complete reviewed v1.12 source tree, preserving `backend/`, `frontend/`, `scripts/`, `assets/`, `.github/workflows/`, `Dockerfile`, and `render.yaml` at repository root.
 2. Review Render costs before provisioning the dedicated PostgreSQL database, API service, and scheduled backup job. No paid cloud resources are authorized by this repository setup alone.
 3. Configure `AR_MAX_PRO_API` as a GitHub Actions secret only after the API is deployed and its HTTPS `/api/health` endpoint is healthy.
-4. Run the Android debug workflow to produce a test APK. A signed release APK additionally requires the Android keystore secrets to be configured in GitHub Actions.
+4. Run the Android debug workflow to produce a test APK. A signed release APK additionally requires Android keystore secrets in GitHub Actions.
 
 ## Security
 
@@ -15,7 +21,8 @@ Never commit `.env` files containing real secrets, database URLs, private keys, 
 
 ## Current status
 
-- Dedicated repository verified.
-- Source tree upload pending.
+- Dedicated repository verified; README and handoff committed.
+- Local source static QA completed: 19/19 tests passed.
+- Full source tree upload pending.
 - API deployment pending; no production API URL exists yet.
 - Android APK build pending; no installable APK has been produced yet.
