@@ -28,7 +28,7 @@ jobs:
           unzip -q AR-Max-Pro-v1.13.16-ready-handoff.zip -d /tmp/ar-max-pro-source
           SOURCE_DIR="/tmp/ar-max-pro-source/armax_v11310_work"
           test -d "$SOURCE_DIR"
-          rsync -a --delete --exclude='.git/' "$SOURCE_DIR/" ./
+          rsync -a --exclude='.git/' --exclude='.github/' "$SOURCE_DIR/" ./
           rm -f AR-Max-Pro-v1.13.16-ready-handoff.zip
 
       - name: Commit imported source
