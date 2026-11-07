@@ -29,6 +29,8 @@ jobs:
           SOURCE_DIR="/tmp/ar-max-pro-source/armax_v11310_work"
           test -d "$SOURCE_DIR"
           rsync -a --exclude='.git/' --exclude='.github/' "$SOURCE_DIR/" ./
+          mkdir -p .github/workflows
+          rsync -a --exclude='import-source-archive.yml' --exclude='backend-verification.yml' "$SOURCE_DIR/.github/workflows/" .github/workflows/
           rm -f AR-Max-Pro-v1.13.16-ready-handoff.zip
 
       - name: Commit imported source
