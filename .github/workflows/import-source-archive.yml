@@ -1,0 +1,46 @@
+name: Import AR Max Pro source archive
+
+on:
+  push:
+    paths:
+      - "AR-Max-Pro-v1.13.16-ready-handoff.zip"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f AR-Max-Pro-v1.13.16-ready-handoff.zip
+          unzip -t AR-Max-Pro-v1.13.16-ready-handoff.zip
+          mkdir -p /tmp/ar-max-pro-source
+          unzip -q AR-Max-Pro-v1.13.16-ready-handoff.zip -d /tmp/ar-max-pro-source
+          SOURCE_DIR="/tmp/ar-max-pro-source/armax_v11310_work"
+          test -d "$SOURCE_DIR"
+          rsync -a --delete --exclude='.git/' "$SOURCE_DIR/" ./
+          rm -f AR-Max-Pro-v1.13.16-ready-handoff.zip
+
+      - name: Commit imported source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No source changes detected."
+            exit 0
+          fi
+          git commit -m "Import AR Max Pro v1.13.16 source"
+          git push
