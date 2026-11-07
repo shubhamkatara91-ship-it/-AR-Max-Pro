@@ -1,32 +1,38 @@
-# AR Max Pro — deployment handoff
+# AR Max Pro v1.13.16 — deployment handoff
 
-This repository is the dedicated home for AR Max Pro. The reviewed v1.12 source archive is available locally, but the complete source tree has not yet been committed to this repository.
+This repository is the dedicated home for AR Max Pro. The latest reviewed source archive is v1.13.16. The complete source tree is **not yet committed** to this repository; the verified ZIP is maintained separately until it can be transferred intact.
 
-## Latest QA on the supplied v1.12 archive
+## Verified local checks (2026-11-07)
 
-- Node.js syntax checks passed for all **13 JavaScript files** checked by `backend/package.json`.
-- Static test suite: **19/19 passed** (`node --test backend/tests/static.test.js`).
-- These are source/static checks only. API runtime tests, PostgreSQL integration tests, production health checks, and physical Android device QA remain outstanding.
+- Backend unit suite: **47/47 passed**, 0 failed, 0 skipped.
+- Backend JavaScript syntax checks: passed via `npm run check`.
+- Source archive integrity: `unzip -t` passed.
+- These results are local source checks. They do not establish production API, database, live-feed, or device functionality.
 
-## Release gates
+## Deployment configuration
 
-1. Upload the complete v1.12 source tree, preserving `backend/`, `frontend/`, `scripts/`, `assets/`, `.github/workflows/`, `Dockerfile`, and `render.yaml` at repository root.
-2. Use the already-created Free PostgreSQL database and a Free web service only. Do not apply the current local render.yaml as-is: it still defines paid Starter/Basic resources and a paid cron job. No paid resources are authorized.
-3. Configure `AR_MAX_PRO_API` as a GitHub Actions secret only after the API is deployed and its HTTPS `/api/health` endpoint is healthy.
-4. Run the Android debug workflow to produce a test APK. A signed release additionally requires Android keystore secrets in GitHub Actions.
+- Render workspace: `My Workspace`.
+- Existing AR Max Pro PostgreSQL 17 Free database: `ar-max-pro-db`, Singapore region, status reported as available.
+- The database currently has an empty IP allowlist. The hosted database query connection was blocked by that policy. Do not open it to all IPs; connect the deployed service using the private/internal database connection in the same region.
+- The only currently listed Render web service was `opus-pro-api`; it is not AR Max Pro and must not be modified for this deployment.
+- Local v1.13.16 `render.yaml` was revised to use a Free web service only and reference an existing database URL. Do not create paid resources.
 
-## Security
+## Remaining release gates
 
-Never commit `.env` files containing real secrets, database URLs, private keys, Android keystores, or cloud credentials. Configure secrets only in the relevant provider dashboard.
+1. Transfer and commit the complete v1.13.16 source tree, including binary assets, into this repository.
+2. Create the AR Max Pro Free web service from the committed source and configure its database connection using Render's private connection details.
+3. Run the full API test suite and PostgreSQL integration test against the deployed service/database; verify health and migrations.
+4. Obtain an authorized BDG feed/API endpoint and documented response schema before enabling live synchronization. Do not scrape private endpoints or bypass authentication.
+5. Generate the Android native project, install/configure the Android SDK and Gradle toolchain, then build and test an APK/AAB on a real device.
+
+## Security and operational notes
+
+- Never commit real `.env` files, database URLs, API keys, signing keys, or keystores.
+- Do not expose the database with a public all-IP allowlist.
+- Prediction outputs are estimates, not guaranteed future results.
+- The Free PostgreSQL database is scheduled to expire on **2026-12-05**; export and verify a backup/migration before that date.
+- No paid service or resource is authorized.
 
 ## Current status
 
-- Dedicated repository verified; deployment handoff committed.
-- Latest local source QA: 13/13 JavaScript syntax checks and 19/19 static tests passed.
-- Full source tree upload pending.
-- Dedicated API/PostgreSQL deployment pending; no production API URL exists yet.
-- Android APK build pending; this build environment has no configured Android SDK/Gradle toolchain.
-
-
-## Free-tier warning
-The current local Render Blueprint has paid resource definitions and must be revised before use. The dedicated Free PostgreSQL database expires on 2026-12-05; plan a verified migration/backup before that date. No paid resource should be created without explicit approval.
+The 47 backend unit tests and syntax checks pass locally. No AR Max Pro production deployment, live BDG feed, PostgreSQL integration result, Android APK/AAB, or physical-device QA is claimed yet.
