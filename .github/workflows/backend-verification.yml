@@ -1,0 +1,31 @@
+name: AR Max Pro backend verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend/**"
+      - "frontend/**"
+      - "scripts/**"
+      - "package.json"
+      - "render.yaml"
+      - "Dockerfile"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backend-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm install --no-audit --no-fund
+      - name: Run syntax and unit checks
+        working-directory: backend
+        run: npm run check
